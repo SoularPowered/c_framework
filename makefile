@@ -5,11 +5,12 @@
 
 CC = gcc
 
-# -std=c++0x specifies to use a certain language version.
 CFLAGS = -std=c99
 CFLAGS += -Wall
-CFLAGS += -pedantic-errors
+# CFLAGS += -pedantic-errors
 CFLAGS += -g
+
+LDFLAGS = -lm
 
 ####################
 ### USER SECTION ###
@@ -47,19 +48,18 @@ DOC5 = main.menu
 DOCS = ${DOC1} ${DOC2} ${DOC3} ${DOC4} ${DOC5}
 
 # COMPRESSED FILE
-ZIP = cs162_assignment_hillyers.zip
+ZIP = output.zip
 
 #####################
 ### BUILD SECTION ###
 #####################
 
-# make default
-default:
-	${CC} ${SRCS} ${HEADERS} -o ${PROG1}
+client:
+	${CC} ${LDFLAGS} -o $@ $^
 
-# make all
-all:
-	${CC} ${CFLAGS} ${SRCS} ${HEADERS} -o ${PROG1}
+client.o: client.c
+	${CC} ${CFLAGS} -o $@ -c $<
+
 
 # make zip
 zip:
