@@ -3,7 +3,7 @@
 
 void main_loop();
 void print_menu();
-int prompt_user(int num_choices);
+int prompt_user(int max_choice);
 bool in_range(int value, int min, int max);
 void exit_message();
 
@@ -15,12 +15,12 @@ int main(int argc, char** argv) {
 }
 
 void main_loop() {
-	int menu_choice = 0, num_choices = 3;
+	int input = 0, max_choice = 3;
 
 	do {
-		menu_choice = prompt_user(num_choices);
+		input = prompt_user(max_choice);
 
-		switch (menu_choice) {
+		switch (input) {
 		case 1:
 			// Call some function
 			break;
@@ -31,7 +31,7 @@ void main_loop() {
 			// Call some function
 			break;
 		}
-	} while (menu_choice != 3);
+	} while (input != max_choice);
 }
 
 
@@ -40,12 +40,29 @@ void print_menu() {
 }
 
 
-int prompt_user(int num_choices) {
-  int input = 0;
+int prompt_user(int max_choice) {
+
+	char buf[BUFSIZ];
+	char *p;
+	long int input;
+	bool success;
+
   do {
     print_menu();
-    // get input
-  } while(!in_range(input, 1, num_choices));
+		if (fgets(buf, sizeof(buf), stdin) != NULL)
+		  {
+		    input = strtol(buf, &p, 10);
+
+		    if (buf[0] != '\n' && (*p == '\n' || *p == '\0')) {
+					success = true;
+				}
+		    else {
+					printf ("Invalid number entered\n");
+					success = false;
+				}
+		  }
+		// input -= '0';		// offset to "convert" to correct ascii value
+  } while(!in_range(input, 1, max_choice) || !success);
 
   return input;
 }
