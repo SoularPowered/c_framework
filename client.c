@@ -77,7 +77,7 @@ bool in_range(int value, int min, int max) {
 	}
 }
 
-
+/* Print exit message */
 void exit_message() {
 	printf("Exiting program.\n\n");
 	printf("Created by Shawn S. Hillyer\n");
