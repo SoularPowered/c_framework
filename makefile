@@ -17,8 +17,8 @@ LDFLAGS = -lm
 ####################
 
 # SRCS
-SRC1 = Client.cpp
-SRC2 = Menu.cpp
+SRC1 = client.c
+SRC2 =
 SRC3 =
 SRC4 =
 SRC5 =
@@ -26,8 +26,8 @@ SRC6 =
 SRCS = ${SRC1} ${SRC2} ${SRC3} ${SRC4} ${SRC5} ${SRC6}
 
 # HEADERS
-HEADER1 = Client.hpp
-HEADER2 = Menu.hpp
+HEADER1 =
+HEADER2 =
 HEADER3 =
 HEADER4 =
 HEADER5 =
@@ -53,6 +53,9 @@ ZIP = output.zip
 #####################
 ### BUILD SECTION ###
 #####################
+
+default:
+	${CC} ${CFLAGS} ${SRCS} ${HEADERS} -o ${PROGS}
 
 client:
 	${CC} ${LDFLAGS} -o $@ $^
