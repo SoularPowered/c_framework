@@ -1,19 +1,21 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+/* Function declarations */
 void main_loop();
 void print_menu();
 int prompt_user(int max_choice);
 bool in_range(int value, int min, int max);
 void exit_message();
 
-
+/* Main */
 int main(int argc, char** argv) {
 	main_loop();
 	exit_message();
 	return 0;
 }
 
+/* Main logic loop */
 void main_loop() {
 	int input = 0, max_choice = 3;
 
@@ -34,14 +36,14 @@ void main_loop() {
 	} while (input != max_choice);
 }
 
-
+/* Print a menu */
 void print_menu() {
 	printf("Hi.\n");
+	// TODO: Read lines in from a file
 }
 
-
+/* Prompt user for input, valid its a number and within valid range */
 int prompt_user(int max_choice) {
-
 	char buf[BUFSIZ];
 	char *p;
 	long int input;
@@ -49,8 +51,7 @@ int prompt_user(int max_choice) {
 
   do {
     print_menu();
-		if (fgets(buf, sizeof(buf), stdin) != NULL)
-		  {
+		if (fgets(buf, sizeof(buf), stdin) != NULL) {
 		    input = strtol(buf, &p, 10);
 
 		    if (buf[0] != '\n' && (*p == '\n' || *p == '\0')) {
@@ -61,18 +62,19 @@ int prompt_user(int max_choice) {
 					success = false;
 				}
 		  }
-		// input -= '0';		// offset to "convert" to correct ascii value
   } while(!in_range(input, 1, max_choice) || !success);
 
   return input;
 }
 
-
+/* Checks if a value is in range of min to max */
 bool in_range(int value, int min, int max) {
-  if (value >= min && value <= max)
+  if (value >= min && value <= max) {
     return true;
-  else
+	}
+  else {
     return false;
+	}
 }
 
 
