@@ -1,0 +1,70 @@
+#########################################################
+# File: Makefile
+# Author: Shawn Hillyer
+#########################################################
+
+CC = gcc
+
+# -std=c++0x specifies to use a certain language version.
+CFLAGS = -std=c99
+CFLAGS += -Wall
+CFLAGS += -pedantic-errors
+CFLAGS += -g
+
+####################
+### USER SECTION ###
+####################
+
+# SRCS
+SRC1 = Client.cpp
+SRC2 = Menu.cpp
+SRC3 =
+SRC4 =
+SRC5 =
+SRC6 =
+SRCS = ${SRC1} ${SRC2} ${SRC3} ${SRC4} ${SRC5} ${SRC6}
+
+# HEADERS
+HEADER1 = Client.hpp
+HEADER2 = Menu.hpp
+HEADER3 =
+HEADER4 =
+HEADER5 =
+HEADERS = ${HEADER1} ${HEADER2} ${HEADER3} ${HEADER4} ${HEADER5}
+
+# EXECUTABLES
+PROG1 = sorting
+PROG2 =
+PROG3 =
+PROGS = ${PROG1} ${PROG2} ${PROG3}
+
+# DOCUMENTS
+DOC1 = cs162_assignment_hillyers.pdf
+DOC2 =
+DOC3 =
+DOC4 = readme.txt
+DOC5 = main.menu
+DOCS = ${DOC1} ${DOC2} ${DOC3} ${DOC4} ${DOC5}
+
+# COMPRESSED FILE
+ZIP = cs162_assignment_hillyers.zip
+
+#####################
+### BUILD SECTION ###
+#####################
+
+# make default
+default:
+	${CC} ${SRCS} ${HEADERS} -o ${PROG1}
+
+# make all
+all:
+	${CC} ${CFLAGS} ${SRCS} ${HEADERS} -o ${PROG1}
+
+# make zip
+zip:
+	zip ${ZIP} ${SRCS} ${HEADERS} ${DOCS} makefile
+
+# make clean
+clean:
+	rm -f ${PROGS} *.o *~
