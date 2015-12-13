@@ -44,17 +44,18 @@ void print_menu() {
 
 /* Prompt user for input, valid its a number and within valid range */
 int prompt_user(int max_choice) {
-	char buf[BUFSIZ];
-	char *p;
-	long int input;
-	bool success;
+	char user_string[BUFSIZ];	// string to hold the input from user_stringfer
+	char *string_end;	// will p
+	long int input; // user input converted to an int
+	bool success; // set to true if the input included only valid character types
+
 
   do {
     print_menu();
-		if (fgets(buf, sizeof(buf), stdin) != NULL) {
-		    input = strtol(buf, &p, 10);
+		if (fgets(user_string, sizeof(user_string), stdin) != NULL) {
+		    input = strtol(user_string, &string_end, 10); // interpret the string stored in user_string as a base-10 long int
 
-		    if (buf[0] != '\n' && (*p == '\n' || *p == '\0')) {
+		    if (user_string[0] != '\n' && (*string_end == '\n' || *string_end == '\0')) {
 					success = true;
 				}
 		    else {
