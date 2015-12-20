@@ -45,17 +45,21 @@ void print_menu() {
 
 /* Prompt user for input, valid its a number and within valid range */
 int prompt_user(int max_choice) {
-	char user_string[BUFSIZ];	// string to hold the input from user_stringfer
-	char *string_end;	// will p
+	char user_string[BUFSIZ];	// string to hold the input from user - BUFSIZ is macro that expans to the size of the buffer
+	char *string_end;	// will point to end of string
 	long int input; // user input converted to an int
-	bool success; // set to true if the input included only valid character types
+	bool success = false; // set to true if the input included only valid character types
 
-
+	/* Print menu /get input until the string intered is valid and in the range required */
   do {
     print_menu();
+
+		// read string from stdin, store in user_string, and if no errors, try to evaluate. Otherwise do-while will repeat
+		// Note: entering nothing should cass fgets to return null
 		if (fgets(user_string, sizeof(user_string), stdin) != NULL) {
 		    input = strtol(user_string, &string_end, 10); // interpret the string stored in user_string as a base-10 long int
 
+				// If user didn't enter onnly a newline and the last character was a newline or null terminated, then read succesfully
 		    if (user_string[0] != '\n' && (*string_end == '\n' || *string_end == '\0')) {
 					success = true;
 				}
@@ -69,7 +73,7 @@ int prompt_user(int max_choice) {
   return input;
 }
 
-/* Checks if a value is in range of min to max */
+/* Checks if value is in range of min to max inclusive */
 bool in_range(int value, int min, int max) {
   if (value >= min && value <= max) {
     return true;
