@@ -1,13 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "client.h"
 
-/* Function declarations */
-void main_loop();
-void print_menu();
-int prompt_user(int max_choice);
-bool in_range(int value, int min, int max);
-void exit_message();
 
 /* Main */
 int main(int argc, char** argv) {
@@ -39,7 +34,12 @@ void main_loop() {
 
 /* Print a menu */
 void print_menu() {
-	printf("Hi.\n");
+	int option_num = 1;
+	printf("[%d] An option here.\n", option_num);
+	++option_num;
+	printf("[%d] An option here.\n", option_num);
+	++option_num;
+	printf("[%d] Quit\n", option_num);
 	// TODO: Read lines in from a file
 }
 
